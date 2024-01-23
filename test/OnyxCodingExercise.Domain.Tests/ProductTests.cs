@@ -7,19 +7,21 @@ public class ProductTests
     {
         var id = 1;
         var name = "Test Product";
+        var colour = ProductColour.Red;
 
-        var sut = new Product(id, name);
+        var sut = new Product(id, name, colour);
 
         sut.Id.Should().Be(id);
         sut.Name.Should().Be(name);
+        sut.Colour.Should().Be(colour);
     }
 
     [Theory]
-    [InlineData(1, "")]
-    [InlineData(1, " ")]
-    public void GivenInvalidCreateProductValues_WhenCreating_ShouldThrow(int id, string name)
+    [InlineData(1, "", ProductColour.Red)]
+    [InlineData(1, " ", ProductColour.Blue)]
+    public void GivenInvalidCreateProductValues_WhenCreating_ShouldThrow(int id, string name, ProductColour colour)
     {
-        Func<Product> act = () => new Product(id, name);
+        Func<Product> act = () => new Product(id, name, colour);
 
         act.Should().Throw<ArgumentException>();
     }
