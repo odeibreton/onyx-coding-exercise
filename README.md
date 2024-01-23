@@ -21,7 +21,8 @@ The colour property is an enum (`ProductColour`) with the following values:
 - Green
 
 ## Infrastructure
-The infrastructure project contains the code to retrieve products from the persistence layer. In this case, the persistence layer is an in-memory array of products defined by configuring the repository.
+The infrastructure project contains the code to retrieve products from the persistence layer.
+In this case, the persistence layer is an in-memory array of products defined by configuring the repository.
 
 ## API
 The API layer is the most complex layer in this project. The API can be split into 3 main parts:
@@ -30,7 +31,7 @@ The API layer is the most complex layer in this project. The API can be split in
 - Mapping
 
 ### Authentication and Authorisation
-The specification document did not speficy which kind of authentication should be used, so I decided to implement a simple API key authentication.
+The specification document did not say which kind of authentication tp use, so I decided to implement a simple API key authentication.
 
 > [!CAUTION]
 > This implementation of API key authentication is not intended to be production-ready.
@@ -41,7 +42,8 @@ It also allows to configure which header to use to get the API key. The default 
 
 The authentication will only succeed if the API key in the request header matches the one configured in the `appsettings.json` file.
 
-The `ApiKeyAuthenticationOptions` contain some validation to ensure that the API key and the header name are not null or empty. If they are, the API will throw an exception.
+The `ApiKeyAuthenticationOptions` contains some validation to ensure that the API key and the header name are not null or empty.
+If they are, the API will throw an exception.
 
 The authentication is configured in the `Program.cs` file.
 
@@ -52,7 +54,7 @@ The API three endpoints:
 - **Get products by colour:** GET /products/query?colour={colour}
 
 #### Health check
-The health check uses the ASP.NET Core health check services and middleware.
+The health check endpoint uses the ASP.NET Core health check services and middleware.
 It is configured to allow anonymous access.
 
 #### Get products
@@ -84,7 +86,8 @@ The API tests are composed by a fixture class, unit tests for the authentication
 ### Fixture
 The fixture class contains the logic to create a test server and a HTTP client to be used by the tests.
 
-It exposes two HTTP clients, one with the API key header and one without it. This allows to test the endpoints with and without authentication.
+It exposes two HTTP clients, one with the API key header and one without it.
+This allows to test the endpoints as an authenticated and a non-authenticated user.
 
 ### Authentication tests
 These unit tests make sure that the authentication logic works as expected.
@@ -96,4 +99,4 @@ The integration tests are divided by authentication.
 
 The tests that make sure authentication is being enforced for the endpoints use the HTTP client without the API key header, and expect a 401 Unauthorized response.
 
-The tests that make sure the endpoints return the correct response use the HTTP client with the API key header.
+The tests that make sure the endpoints return the correct response after the user is authenticated use the HTTP client with the API key header.
