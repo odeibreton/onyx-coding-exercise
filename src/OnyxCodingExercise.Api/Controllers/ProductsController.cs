@@ -20,4 +20,16 @@ public class ProductsController(IProductRepository productRepository) : Controll
 
         return Ok(mappedProducts);
     }
+
+    [HttpGet("query")]
+    public async Task<ActionResult<IEnumerable<ProductModel>>> GetProducts(
+        [FromQuery] ProductColourModel colour,
+        CancellationToken ct)
+    {
+        var products = await _productRepository.GetProductsByColourAsync(ProductMapper.Map(colour), ct);
+
+        var mappedProducts = products.Select(ProductMapper.Map);
+
+        return Ok(mappedProducts);
+    }
 }

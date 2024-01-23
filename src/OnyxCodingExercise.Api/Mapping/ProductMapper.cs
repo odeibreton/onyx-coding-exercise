@@ -15,4 +15,12 @@ public static class ProductMapper
         ProductColour.Blue => ProductColourModel.Blue,
         _ => throw new ArgumentOutOfRangeException(nameof(model), model, null)
     };
+
+    public static ProductColour Map(ProductColourModel model) => model switch
+    {
+        ProductColourModel.Red => ProductColour.Red,
+        ProductColourModel.Green => ProductColour.Green,
+        ProductColourModel.Blue => ProductColour.Blue,
+        _ => throw new ArgumentOutOfRangeException(nameof(model), model, null)
+    };
 }

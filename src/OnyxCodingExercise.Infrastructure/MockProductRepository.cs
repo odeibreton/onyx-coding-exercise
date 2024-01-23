@@ -10,4 +10,7 @@ public class MockProductRepository(IOptions<MockProductRepositoryOptions> option
 
     public Task<Product[]> GetProductsAsync(CancellationToken ct) =>
         Task.FromResult(_products);
+
+    public Task<Product[]> GetProductsByColourAsync(ProductColour colour, CancellationToken ct) =>
+        Task.FromResult(_products.Where(p => p.Colour == colour).ToArray());
 }

@@ -44,4 +44,26 @@ public class MockProductRepositoryTests
 
         result.Should().BeEquivalentTo(_fullOptions.Products);
     }
+
+    [Theory]
+    [InlineData(ProductColour.Blue)]
+    [InlineData(ProductColour.Green)]
+    [InlineData(ProductColour.Red)]
+    public async Task GivenARepository_WithNoProducts_WhenGettingProductsByColour_ShouldReturnEmpty(ProductColour colour)
+    {
+        var result = await _emptySut.GetProductsByColourAsync(colour, default);
+
+        result.Should().BeEmpty();
+    }
+
+    [Theory]
+    [InlineData(ProductColour.Blue)]
+    [InlineData(ProductColour.Green)]
+    [InlineData(ProductColour.Red)]
+    public async Task GivenARepository_WithProducts_WhenGettingProductsByColour_ShouldReturnMatchingProducts(ProductColour colour)
+    {
+        var result = await _fullSut.GetProductsByColourAsync(colour, default);
+
+        result.Should().BeEquivalentTo(_fullOptions.Products.Where(p => p.Colour == colour));
+    }
 }
