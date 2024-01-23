@@ -8,6 +8,8 @@ This solution is built using .NET 8, ASP.NET Core and Domain-Driven Design (DDD)
 
 Each project above has a corresponding test project in the `test` folder.
 
+I added a Postman collection to the project to allow testing the API endpoints.
+
 ## Domain
 This project contains the domain model and business logic. This solution did not require a big domain model, neither any complex logic, so it's very simple.
 
