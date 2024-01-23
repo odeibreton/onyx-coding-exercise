@@ -8,7 +8,7 @@ namespace OnyxCodingExercise.Api.Tests.Products;
 public class IntegrationTests(WebAppFixture webAppFixture)
     : IClassFixture<WebAppFixture>
 {
-    private readonly HttpClient _httpClient = webAppFixture.HttpClient;
+    private readonly HttpClient _httpClient = webAppFixture.AuthenticatedHttpClient;
     private readonly Product[] _configuredProducts = webAppFixture.ConfiguredProducts;
     private readonly JsonSerializerOptions _jsonOptions = webAppFixture.JsonSerializerOptions;
 

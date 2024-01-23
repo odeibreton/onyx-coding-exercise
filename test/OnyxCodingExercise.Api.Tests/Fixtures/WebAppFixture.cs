@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using OnyxCodingExercise.Api.Authentication;
 using OnyxCodingExercise.Domain;
 using OnyxCodingExercise.Infrastructure;
 using System.Text.Json;
@@ -15,6 +16,7 @@ public class WebAppFixture : IDisposable
     private readonly IServiceScope _serviceScope;
 
     public HttpClient HttpClient { get; }
+    public HttpClient AuthenticatedHttpClient { get; }
     public IServiceProvider Services { get; }
     public Product[] ConfiguredProducts { get; }
 
@@ -32,11 +34,18 @@ public class WebAppFixture : IDisposable
         WebApplicationFactory = GetWebApplicationFactory(new WebApplicationFactory<Program>());
 
         HttpClient = WebApplicationFactory.CreateClient();
+        AuthenticatedHttpClient = WebApplicationFactory.CreateClient();
 
         _serviceScope = WebApplicationFactory.Services.CreateScope();
         Services = _serviceScope.ServiceProvider;
 
         ConfiguredProducts = Services.GetRequiredService<IOptions<MockProductRepositoryOptions>>().Value.Products;
+
+        var configuration = Services.GetRequiredService<IConfiguration>();
+
+        var apiKeyAuthOptions = new ApiKeyAuthenticationOptions();
+        configuration.Bind("ApiKeyAuthenticationOptions", apiKeyAuthOptions);
+        AuthenticatedHttpClient.DefaultRequestHeaders.Add(apiKeyAuthOptions.HeaderName, apiKeyAuthOptions.ApiKey);
     }
 
     internal virtual WebApplicationFactory<Program> GetWebApplicationFactory(WebApplicationFactory<Program> factory) =>

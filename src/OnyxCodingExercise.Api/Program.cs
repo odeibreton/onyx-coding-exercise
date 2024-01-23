@@ -1,6 +1,7 @@
 using OnyxCodingExercise.Infrastructure;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using OnyxCodingExercise.Api.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,13 @@ builder.Services.AddTransient<IProductRepository, MockProductRepository>();
 builder.Services.AddOptions();
 builder.Services.Configure<MockProductRepositoryOptions>(builder.Configuration.GetSection("MockProductRepositoryOptions"));
 
+// Authentication
+builder.Services.AddAuthentication()
+    .AddScheme<ApiKeyAuthenticationOptions, ApiKeyAuthenticationHandler>(ApiKeyAuthenticationDefaults.AuthenticationScheme, options =>
+    {
+        builder.Configuration.Bind("ApiKeyAuthenticationOptions", options);
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,10 +46,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAuthorization();
 
 app.MapHealthChecks("/").AllowAnonymous();
 
-app.MapControllers();
+app.MapControllers().RequireAuthorization();
 
 app.Run();
 
