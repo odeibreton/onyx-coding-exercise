@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnyxCodingExercise.Api", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnyxCodingExercise.Api.Tests", "test\OnyxCodingExercise.Api.Tests\OnyxCodingExercise.Api.Tests.csproj", "{35A34C3C-DEBB-49BE-A0AF-7274444B4DFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnyxCodingExercise.Domain", "src\OnyxCodingExercise.Domain\OnyxCodingExercise.Domain.csproj", "{16CD5904-1093-424F-9B2D-D56548668985}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnyxCodingExercise.Domain.Tests", "test\OnyxCodingExercise.Domain.Tests\OnyxCodingExercise.Domain.Tests.csproj", "{CDF7CB9E-0C5B-45BC-9DE9-5D812ABC6417}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{35A34C3C-DEBB-49BE-A0AF-7274444B4DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35A34C3C-DEBB-49BE-A0AF-7274444B4DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35A34C3C-DEBB-49BE-A0AF-7274444B4DFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16CD5904-1093-424F-9B2D-D56548668985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16CD5904-1093-424F-9B2D-D56548668985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16CD5904-1093-424F-9B2D-D56548668985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16CD5904-1093-424F-9B2D-D56548668985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDF7CB9E-0C5B-45BC-9DE9-5D812ABC6417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDF7CB9E-0C5B-45BC-9DE9-5D812ABC6417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDF7CB9E-0C5B-45BC-9DE9-5D812ABC6417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDF7CB9E-0C5B-45BC-9DE9-5D812ABC6417}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +44,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D9FE801E-17F0-4D4A-ABDD-CF0543631B78} = {54DCB90F-F9EA-4F2F-A21C-CAF8DED9A2FC}
 		{35A34C3C-DEBB-49BE-A0AF-7274444B4DFF} = {BD75F2AB-F716-4153-AFD3-51FA1AF17DAE}
+		{16CD5904-1093-424F-9B2D-D56548668985} = {54DCB90F-F9EA-4F2F-A21C-CAF8DED9A2FC}
+		{CDF7CB9E-0C5B-45BC-9DE9-5D812ABC6417} = {BD75F2AB-F716-4153-AFD3-51FA1AF17DAE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D20E8E56-6849-4185-86F9-43A46DAC3F5E}
