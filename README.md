@@ -10,6 +10,8 @@ Each project above has a corresponding test project in the `test` folder.
 
 I added a Postman collection to the project to allow testing the API endpoints.
 
+I also added a security definition to Swagger to allow testing the API endpoints using the Swagger UI.
+
 ## Domain
 This project contains the domain model and business logic. This solution did not require a big domain model, neither any complex logic, so it's very simple.
 

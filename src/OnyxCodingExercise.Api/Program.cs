@@ -2,6 +2,7 @@ using OnyxCodingExercise.Infrastructure;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using OnyxCodingExercise.Api.Authentication;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,32 @@ builder.Services.AddControllers()
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("ApiKey", new()
+    {
+        Description = "API Key Authentication",
+        Type = SecuritySchemeType.ApiKey,
+        Name = "X-Api-Key",
+        In = ParameterLocation.Header,
+        Scheme = "ApiKeyScheme",
+    });
+
+    var scheme = new OpenApiSecurityScheme()
+    {
+        Reference = new OpenApiReference()
+        {
+            Type = ReferenceType.SecurityScheme,
+            Id = "ApiKey"
+        },
+        In = ParameterLocation.Header,
+    };
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+        { scheme, new List<string>() }
+    });
+});
 
 builder.Services.AddHealthChecks();
 
