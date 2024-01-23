@@ -2,7 +2,7 @@ using System.Net;
 
 namespace OnyxCodingExercise.Api.Tests.HealthCheck;
 
-public class HealthCheckTests(WebAppFixture webAppFixture)
+public class IntegrationTests(WebAppFixture webAppFixture)
     : IClassFixture<WebAppFixture>
 {
     private readonly HttpClient _httpClient = webAppFixture.HttpClient;
